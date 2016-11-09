@@ -89,19 +89,21 @@
             public int ExtraInfo;
         }
 
-
-        //This is the Import for the SetWindowsHookEx function.
-        //Use this function to install a thread-specific hook.
+        /// <summary>
+        /// Use this function to install a thread-specific hook.
+        /// </summary>
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
         private static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
 
-        //This is the Import for the UnhookWindowsHookEx function.
-        //Call this function to uninstall the hook.
+        /// <summary>
+        /// Call this function to uninstall the hook.
+        /// </summary>
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, SetLastError = true)]
         private static extern int UnhookWindowsHookEx(int idHook);
 
-        //This is the Import for the CallNextHookEx function.
-        //Use this function to pass the hook information to the next hook procedure in chain.
+        /// <summary>
+        /// Use this function to pass the hook information to the next hook procedure in chain.
+        /// </summary>
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int CallNextHookEx(int idHook, int nCode, IntPtr wParam, IntPtr lParam);
 
@@ -336,7 +338,7 @@
 
             }
 
-            return CallNextHookEx(hHookLL, nCode, wParam, lParam);
+            return CallNextHookEx(hHook, nCode, wParam, lParam);
         }
     }
 
